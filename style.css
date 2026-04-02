@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+  --c-main: var(--neon-cyan);
+  --c-alt: var(--neon-purple);
+  --bg-dark: #0a0014;
+  --glass: rgba(255, 255, 255, 0.035);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+body {
+  background: var(--bg-dark);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-y: auto; /* Hub needs to scroll */
+}
+
+.hub-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 10px;
+}
+
+/* ── Game Grid ── */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.game-card {
+  position: relative;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 30px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s var(--ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--c-main);
+  box-shadow: 0 10px 40px -10px rgba(0, 242, 254, 0.2);
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--c-main), var(--c-alt));
+  opacity: 0.5;
+}
+
+.card-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  transition: transform 0.4s var(--ease);
+}
+
+.game-card:hover .card-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.game-title-card {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+}
+
+.play-hint {
+  margin-top: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--c-main);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s var(--ease);
+}
+
+.game-card:hover .play-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Footer ── */
+footer {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-info {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.2);
+}
