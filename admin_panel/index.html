@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JET10 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -14,64 +14,88 @@
         <div class="circle circle-2"></div>
     </div>
 
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar glass-panel">
-            <div class="brand">
-                <i class="fa-solid fa-gamepad"></i>
-                <h1>JET10 Admin</h1>
-            </div>
-            <nav>
-                <a href="#" class="active"><i class="fa-solid fa-list"></i> Games List</a>
-            </nav>
-        </aside>
+    <!-- Header -->
+    <header class="topbar glass-panel">
+        <div class="brand">
+            <i class="fa-solid fa-gamepad"></i>
+            <h1>Admin Panel</h1>
+        </div>
+    </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="topbar glass-panel">
-                <h2>Manage Games</h2>
-                <div class="user-info">
-                    <span>Admin</span>
-                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                </div>
-            </header>
-
-            <div class="content-grid">
-                <!-- Add Game Form -->
-                <section class="form-section glass-panel">
-                    <h3><i class="fa-solid fa-plus"></i> Add New Game</h3>
-                    <form id="add-game-form">
-                        <div class="form-group">
-                            <label for="game-name">Game Name</label>
-                            <input type="text" id="game-name" placeholder="e.g. Helix Jump" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="game-url">Game URL</label>
-                            <input type="url" id="game-url" placeholder="https://example.com/game" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="game-image">Image URL (Optional)</label>
-                            <input type="url" id="game-image" placeholder="https://example.com/icon.png">
-                        </div>
-                        <button type="submit" class="btn-primary" id="add-game-btn">
-                            <span>Add Game</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </form>
-                </section>
-
-                <!-- Games List -->
-                <section class="list-section glass-panel">
-                    <h3><i class="fa-solid fa-gamepad"></i> Published Games <span id="game-count" class="badge">0</span></h3>
-                    <div class="games-list" id="games-list">
-                        <!-- Game Items injected via JS -->
-                        <div class="loading-state">
-                            <i class="fa-solid fa-circle-notch fa-spin"></i> Loading games...
-                        </div>
+    <main class="main-content">
+        <!-- Add Game Form -->
+        <section id="section-add" class="form-section hidden">
+            <div class="glass-panel padded-panel">
+                <h3><i class="fa-solid fa-plus"></i> Add Game</h3>
+                <form id="add-game-form">
+                    <div class="form-group">
+                        <label>Game Name</label>
+                        <input type="text" id="game-name" placeholder="e.g. Helix Jump" required>
                     </div>
-                </section>
+                    <div class="form-group">
+                        <label>Game URL</label>
+                        <input type="url" id="game-url" placeholder="https://example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URL (Optional)</label>
+                        <input type="url" id="game-image" placeholder="https://example.com/icon.png">
+                    </div>
+                    <button type="submit" class="btn-primary" id="add-game-btn">
+                        <span>Add Game</span>
+                    </button>
+                </form>
             </div>
-        </main>
+        </section>
+
+        <!-- Games List -->
+        <section id="section-list" class="list-section">
+            <h3 style="color: white; margin-bottom: 16px;"><i class="fa-solid fa-list"></i> Games <span id="game-count" class="badge">0</span></h3>
+            <div class="games-list" id="games-list">
+                <div class="loading-state">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav glass-panel">
+        <button id="nav-list" class="nav-btn active">
+            <i class="fa-solid fa-list"></i>
+            <span>List</span>
+        </button>
+        <button id="nav-add" class="nav-btn">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add</span>
+        </button>
+    </nav>
+
+    <!-- Edit Modal Overlay -->
+    <div id="edit-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-pen"></i> Edit Game</h3>
+                <button id="close-modal-btn" class="icon-btn"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <form id="edit-game-form">
+                <input type="hidden" id="edit-game-id">
+                <div class="form-group">
+                    <label>Game Name</label>
+                    <input type="text" id="edit-game-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Game URL</label>
+                    <input type="url" id="edit-game-url" required>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="edit-game-image">
+                </div>
+                <button type="submit" class="btn-primary" id="edit-game-btn">
+                    <span>Update Game</span>
+                </button>
+            </form>
+        </div>
     </div>
 
     <!-- Toast Notification -->
