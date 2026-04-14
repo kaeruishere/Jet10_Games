@@ -529,10 +529,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, get, update, onValue, off, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-// ======================================================
-// 🔥 FIREBASE CONFIG — KENDİ CONFIG'İNLE DEĞİŞTİR
-// ======================================================
-  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyA8bIK1lEHZouQIdB1li4bljrsqXmVxK10",
     authDomain: "kaeru-ludo.firebaseapp.com",
@@ -542,7 +538,6 @@ import { getDatabase, ref, set, get, update, onValue, off, remove } from "https:
     messagingSenderId: "496598606537",
     appId: "1:496598606537:web:4bc21f440098533691e318"
   };
- ======================================================
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
