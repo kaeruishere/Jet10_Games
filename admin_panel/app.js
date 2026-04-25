@@ -57,11 +57,12 @@ addForm.addEventListener('submit', async (e) => {
     const name = document.getElementById('game-name').value;
     const url = document.getElementById('game-url').value;
     const imageUrl = document.getElementById('game-image').value;
+    const version = document.getElementById('game-version').value || '1.0';
     
     btnAdd.disabled = true; btnAdd.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i>`;
     try {
         await addDoc(collection(db, "oyunlar"), {
-            name, url, imageUrl: imageUrl || null, createdAt: serverTimestamp()
+            name, url, imageUrl: imageUrl || null, version, createdAt: serverTimestamp()
         });
         addForm.reset();
         showToast("Game Added!");
@@ -91,11 +92,12 @@ editForm.addEventListener('submit', async (e) => {
     const name = document.getElementById('edit-game-name').value;
     const url = document.getElementById('edit-game-url').value;
     const imageUrl = document.getElementById('edit-game-image').value;
+    const version = document.getElementById('edit-game-version').value || '1.0';
 
     btnEditSave.disabled = true; btnEditSave.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i>`;
     try {
         await updateDoc(doc(db, "oyunlar", id), {
-            name, url, imageUrl: imageUrl || null
+            name, url, imageUrl: imageUrl || null, version
         });
         editModal.classList.add('hidden');
         showToast("Game Updated!");
@@ -137,6 +139,7 @@ onSnapshot(q, (snapshot) => {
                     <span class="game-name">${game.name}</span>
                     <span class="game-link">${game.url}</span>
                 </div>
+                <span class="version-badge">v${game.version || '1.0'}</span>
             </div>
             <div class="card-actions">
                 <button class="action-btn edit" data-id="${id}"><i class="fa-solid fa-pen"></i> Edit</button>
@@ -172,6 +175,7 @@ onSnapshot(q, (snapshot) => {
                 document.getElementById('edit-game-name').value = g.name;
                 document.getElementById('edit-game-url').value = g.url;
                 document.getElementById('edit-game-image').value = g.imageUrl || '';
+                document.getElementById('edit-game-version').value = g.version || '1.0';
                 editModal.classList.remove('hidden');
             }
         });
