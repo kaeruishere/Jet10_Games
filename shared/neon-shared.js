@@ -107,6 +107,7 @@
     difficulty,
     mult:       MULT,
     sfx:        SFX,
+    user:       null,
     /** Returns the active difficulty multiplier object */
     getDiff()  { return MULT[this.difficulty]; },
     /** Save difficulty to localStorage (call from DifficultySelector) */
@@ -116,5 +117,13 @@
       localStorage.setItem('neonDifficulty', d);
     },
   };
+
+  // ── Flutter Integration ──────────────────────────────────────
+  window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+    console.log("Flutter InAppWebView is ready. User data injected.");
+    if (window.currentUser) {
+      window.NEON.user = window.currentUser;
+    }
+  });
 
 })();
