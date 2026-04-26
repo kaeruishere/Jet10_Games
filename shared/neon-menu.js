@@ -400,7 +400,7 @@ const NeonMenu = (function() {
       
       // Override some colors for game over
       menuContainer.style.setProperty('--neon-menu-c', '#ff2d78');
-      if ($('nm-cta')) {
+      if ($('nm-restart-btn')) {
           $('nm-restart-btn').style.borderColor = '#ff2d78';
           $('nm-restart-btn').style.color = '#ff2d78';
       }
@@ -409,6 +409,14 @@ const NeonMenu = (function() {
           menuContainer.classList.remove('active');
           if (onRestartCallback) onRestartCallback();
       });
+
+      // JET10 Flutter Communication
+      if (window.flutter_inappwebview && window.flutter_inappwebview.callHandler) {
+          window.flutter_inappwebview.callHandler('saveScore', score)
+              .then(function(result) {
+                  console.log("Score sent to Flutter: " + score);
+              });
+      }
     }
   };
 })();

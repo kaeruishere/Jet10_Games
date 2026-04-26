@@ -90,6 +90,9 @@ function getBlockColor(value) {
 function initGame() {
     score = 0;
     scoreEl.innerText = score;
+    if (window.NEON && window.NEON.user) {
+        console.log("Snake playing as: " + window.NEON.user.username);
+    }
     snakeLength = 4;
     snakeHeadX = W / 2;
     snakeHistory = [];
