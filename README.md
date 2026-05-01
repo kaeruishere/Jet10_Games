@@ -1,3 +1,13 @@
-📱 Proje Hakkında: Jet10_Games
+# JET10 Oyunları
 
-Jet10, isimli mobil uygulamam için geliştirmiş olduğum oyun kütüphanesi
+JET10 platformu için HTML5 ve web tabanlı olarak geliştirilmiş entegre mini oyunlar koleksiyonu.
+
+## 🚀 Özellikler
+- Tarayıcı tabanlı oyunlar
+- Responsive tasarım
+- JET10 ana platformu ile entegrasyon
+
+## 🛠️ Kullanılan Teknolojiler
+- HTML5
+- CSS3
+- JavaScript

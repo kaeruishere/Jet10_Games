@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebas
 import { getFirestore, collection, addDoc, doc, deleteDoc, updateDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDIYz3jWy0W8dO0HzhBa-2MQyq6nfb2AcU",
+    apiKey: "YOUR_FIREBASE_API_KEY",
     authDomain: "kaeru-jet10-app.firebaseapp.com",
     projectId: "kaeru-jet10-app",
     storageBucket: "kaeru-jet10-app.firebasestorage.app",
