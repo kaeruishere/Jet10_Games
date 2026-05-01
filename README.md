@@ -1,2 +1,3 @@
-# Jet10_Games
- Game Library for Jet10 app - made by me
+📱 Proje Hakkında: Jet10_Games
+
+Jet10, isimli mobil uygulamam için geliştirmiş olduğum oyun kütüphanesi
